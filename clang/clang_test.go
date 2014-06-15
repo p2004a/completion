@@ -102,12 +102,8 @@ void main() {
 			t.Errorf("Couldn't write test data to %s: %s", fn, err)
 		}
 	} else if d := util.Diff(expected, res); len(d) != 0 {
-		fmt.Print("res:")
-		fmt.Print(res)
-		fmt.Print("\n")
 		t.Error(d)
 	}
-
 }
 
 func TestParseResult(t *testing.T) {
@@ -212,15 +208,4 @@ func TestGetDefinition(t *testing.T) {
 	} else {
 		t.Log(b)
 	}
-}
-
-func TestIdentificatorBegin(t *testing.T) {
-	if getIdentificatorBegin(" ~asd", 3) != 2 { t.Error("failed example 1") }
-	if getIdentificatorBegin("   ~   asd", 8) != 7 { t.Error("failed example 2") }
-	if getIdentificatorBegin(" a:: ~ asd", 8) != 5 { t.Error("failed example 3") }
-	if getIdentificatorBegin(" a ->~as", 7) != 5 { t.Error("failed example 4") }
-	if getIdentificatorBegin("a. ~s", 4) != 3 { t.Error("failed example 5") }
-	if getIdentificatorBegin(" asdasd", 5) != 1 { t.Error("failed example 6") }
-	if getIdentificatorBegin(".", 1) != 1 { t.Error("failed example 7") }
-	if getIdentificatorBegin("a", 1) != 0 { t.Error("failed example 8") }
 }
